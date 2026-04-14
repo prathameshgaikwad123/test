@@ -19,11 +19,24 @@ body {
 
 /* --- Page Container --- */
 .cta-page {
-  max-width: 480px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 16px 40px;
   background: #ffffff;
   min-height: 100vh;
+}
+
+/* --- Desktop: Center the form with proper width --- */
+@media (min-width: 768px) {
+  .cta-page {
+    max-width: 100%;
+    padding: 0 40px 60px;
+  }
+
+  .cta-form-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+  }
 }
 
 /* --- Pink Header --- */
@@ -345,15 +358,10 @@ body {
 
 /* --- Responsive (Desktop) --- */
 @media (min-width: 768px) {
-  .cta-page {
-    max-width: 600px;
-    padding: 0 32px 60px;
-  }
-
   .cta-header {
-    padding: 40px 24px 28px;
+    padding: 48px 32px 32px;
     border-radius: 0 0 32px 32px;
-    margin: 0 -32px 32px;
+    margin: 0 -40px 32px;
   }
 
   .cta-header-icon {
@@ -362,7 +370,7 @@ body {
   }
 
   .cta-header-text {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .step-nav {
@@ -371,7 +379,7 @@ body {
   }
 
   .step-item {
-    padding: 10px 8px;
+    padding: 12px 12px;
   }
 
   .step-label {
@@ -381,6 +389,15 @@ body {
   .step-arrow {
     width: 24px;
     height: 24px;
+  }
+
+  .step-form-container {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .form-group {
+    margin-bottom: 28px;
   }
 
   .form-label {
@@ -397,6 +414,7 @@ body {
   .form-textarea {
     padding: 16px 20px;
     font-size: 17px;
+    min-height: 120px;
   }
 
   .btn-next,
@@ -408,6 +426,17 @@ body {
   .btn-back {
     padding: 14px 32px;
     font-size: 15px;
+  }
+
+  .step-buttons {
+    max-width: 640px;
+    margin: 8px auto 0;
+  }
+
+  .privacy-check {
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 0;
   }
 }
 

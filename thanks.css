@@ -32,21 +32,17 @@
 }
 
 .thanks-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  margin-bottom: 0;
 }
 
-.thanks-logo svg {
-  width: 24px;
-  height: 24px;
-  color: white;
+.thanks-logo-img {
+  height: 36px;
+  width: auto;
+  filter: brightness(0) invert(1);
 }
 
-.thanks-logo span {
-  font-size: 18px;
-  font-weight: 700;
-  color: white;
+@media (min-width: 768px) {
+  .thanks-logo-img { height: 40px; }
 }
 
 /* --- Content Area --- */
