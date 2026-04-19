@@ -60,10 +60,19 @@ a {
     flex-shrink: 0;
     background: #012682;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 20px;
     padding: 12px 28px;
+    padding-top: 28px;
+}
+
+.header-web-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    flex-shrink: 0;
 }
 
 .header-promo {
@@ -91,6 +100,7 @@ a {
     color: #012682;
     border: none;
     flex-shrink: 0;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(255, 255, 255, 0.25);
 }
 
 .btn-circle-arrow {
@@ -131,6 +141,7 @@ a {
     background: #06c755;
     color: #fff;
     border: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(255, 255, 255, 0.25);
 }
 
 .btn-line .btn-circle-arrow {
@@ -835,7 +846,7 @@ a {
 .highlight-word {
     font-size: 50px;
     font-weight: 900;
-    font-family: 'Noto Serif JP', 'Georgia', serif;
+    font-family: 'Noto Sans JP', sans-serif;
     vertical-align: middle;
     line-height: 1;
 }
@@ -890,6 +901,7 @@ a {
 }
 
 .section-title-white {
+    font-family: 'Noto Sans JP', sans-serif;
     color: #fff;
     font-size: 32px;
     font-weight: 700;
@@ -959,6 +971,7 @@ a {
     max-width: 700px;
     margin: 0 auto;
     position: relative;
+    margin-top: 30px;
 }
 
 .solution-banner-worker {
@@ -1187,9 +1200,8 @@ a {
 }
 
 .process-arrow {
-    font-size: 28px;
-    color: #fff;
-    font-weight: 900;
+    width: 32px;
+    height: auto;
     flex-shrink: 0;
     margin-bottom: 60px;
 }
@@ -1197,7 +1209,7 @@ a {
 /* Message Section */
 .message {
     padding: 80px 0;
-    height: 600px;
+    height: 650px;
     background-image: url('assets/images/22264976_m 1.png');
     background-size: cover;
     background-position: center;
@@ -1216,6 +1228,7 @@ a {
     position: relative;
     z-index: 1;
     padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 .message .section-title-blue {
@@ -1224,7 +1237,7 @@ a {
     position: relative;
     z-index: 1;
     color: #012682;
-    font-size: 26px;
+    font-size: 36px;
     font-weight: 900;
 }
 
@@ -1236,6 +1249,7 @@ a {
     z-index: 1;
     max-width: 860px;
     margin: 0 auto;
+    /* padding-bottom: 50px; */
 }
 
 .message-image-wrap {
@@ -1247,11 +1261,11 @@ a {
 
 .message-image {
     text-align: center;
-    width: 200px;
+    width: 300px;
 }
 
 .message-image img {
-    width: 200px;
+    width: 300px;
     height: auto;
     object-fit: cover;
     border-radius: 0;
@@ -1274,7 +1288,7 @@ a {
 
 .message-text p {
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.75;
     color: #000000;
 }
@@ -1443,7 +1457,7 @@ a {
 }
 
 .testimonial-card {
-    background: linear-gradient(180deg, #012682 60%, #80B3FF 100%);
+    background: #012682;
     border-radius: 12px;
     padding: 0 24px 24px;
     color: #fff;
@@ -1528,24 +1542,24 @@ a {
     margin: 0 auto;
 }
 
-.cta-badge {
-    background: #ffd700;
-    color: #e63946;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    font-size: 16px;
-    font-weight: 900;
-    display: inline-flex;
+.cta-badge-row {
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.cta-badge {
+    width: 90px;
+    height: auto;
+    flex-shrink: 0;
 }
 
 .cta-text {
     color: #fff;
     font-size: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 0;
     border-bottom: 2px dashed #fff;
     display: inline-block;
     padding-bottom: 5px;
@@ -1806,8 +1820,8 @@ a {
 .regional-image {
     position: absolute;
     right: 50px;
-    bottom: 0;
-    width: 300px;
+    bottom: 0px;
+    width: 400px;
     z-index: 1;
 }
 
@@ -1903,14 +1917,14 @@ a {
 
 .faq-banner-sub {
     color: #fff;
-    font-size: 18px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 16px;
 }
 
 .faq-banner-title {
     color: #fff;
-    font-size: 36px;
+    font-size: 48px;
     font-weight: 900;
 }
 
@@ -2020,7 +2034,7 @@ a {
     background-size: 65% auto, cover;
     position: relative;
     overflow: hidden;
-    height: 620px;
+    height: 600px;
 }
 
 .final-content {
@@ -2030,7 +2044,7 @@ a {
 }
 
 .final-text {
-    max-width: 520px;
+    max-width: 550px;
     padding-left: 20px;
 }
 
@@ -2056,12 +2070,14 @@ a {
 }
 
 .final-badges {
-    display: inline-flex;
+    display: flex;
+    width: 100%;
     gap: 15px;
     flex-wrap: wrap;
     position: relative;
-    z-index: 2;
+    z-index: 10;
     margin-bottom: 20px;
+    justify-content: space-around;
 }
 
 .badge-outline {
@@ -2069,9 +2085,11 @@ a {
     color: #fff;
     border: none;
     padding: 12px 15px;
+    padding-left: 28px;
+    padding-right: 28px;
     border-radius: 10px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 24px;
 }
 
 /* Footer */
@@ -2686,10 +2704,14 @@ a {
         grid-template-columns: 1fr;
         gap: 64px;
     }
+    
+    .testimonial-card {
+        background: linear-gradient(180deg, #012682 60%, #80B3FF 100%);
+    }
 
     /* CTA section mobile */
     .cta-section {
-        background: linear-gradient(180deg, #80B3FF 0%, #FFFFFF 100%) !important;
+        background: linear-gradient(180deg, #012682 0%, #80B3FF 100%) !important;
     }
 
     .cta-box {
@@ -2699,29 +2721,39 @@ a {
     }
 
     .cta-note {
-        color: #012682;
+        color: #fff;
         font-size: 16px;
         opacity: 0.8;
         margin-top: 6px;
         padding-left: 4px;
     }
 
+    .cta-badge-row {
+        flex-direction: column !important;
+        gap: 6px !important;
+        margin-bottom: 0 !important;
+    }
+
     .cta-badge {
-        border-radius: 8px !important;
-        width: 100% !important;
-        height: auto !important;
-        padding: 8px 0 !important;
-        font-size: 20px !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        margin-bottom: 5px !important;
+        display: none !important;
+    }
+
+    .cta-badge-row::before {
+        content: '無料！';
+        display: block;
+        background: #FDFA21;
+        color: #F50082;
+        font-weight: 900;
+        font-size: 18px;
+        /* border-radius: 30px; */
+        padding: 8px 60px;
+        text-align: center;
     }
 
     .cta-text {
         font-size: 36px !important;
         font-weight: 900 !important;
-        color: #012682 !important;
+        color: #fff !important;
         border-bottom: 5px dashed #FDFA21 !important;
         margin-bottom: 20px !important;
     }
