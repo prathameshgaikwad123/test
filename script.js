@@ -1,99 +1,237 @@
 // Multi-step Form Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    const formConfig = {
+        job: [
+            '未経験',
+            '建築施工管理',
+            '土木施工管理',
+            '設備施工管理',
+            '電気施工管理',
+            '管工事施工管理',
+            '建設営業',
+            '設計',
+            '事務'
+        ],
+        timing: [
+            '今すぐ',
+            '1か月以内',
+            '3か月以内',
+            '良い求人があれば',
+            'まずは情報収集'
+        ],
+        location: [
+            '大阪',
+            '京都',
+            '兵庫',
+            '奈良',
+            '滋賀',
+            '和歌山',
+            'その他'
+        ]
+    };
+
     const form = document.getElementById('consultationForm');
+    const backBtn = document.getElementById('backBtn');
     const nextBtn = document.getElementById('nextBtn');
     const submitBtn = document.getElementById('submitBtn');
-    const steps = document.querySelectorAll('.form-step-content');
+    const steps = form ? Array.from(form.querySelectorAll('.form-step-content')) : [];
+    const stage = form ? form.querySelector('.form-step-stage') : null;
     const stepIndicators = document.querySelectorAll('.step');
-    let currentStep = 1;
+    const stepBar = document.querySelector('.form-steps');
+    const formFeedback = document.getElementById('formFeedback');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const thankYouResetBtn = document.getElementById('thankYouResetBtn');
     const totalSteps = 4;
+    let currentStep = 1;
 
-    // Update step display
-    function updateStepDisplay() {
-        steps.forEach((step, index) => {
-            if (index + 1 === currentStep) {
-                step.classList.remove('hidden');
-            } else {
-                step.classList.add('hidden');
-            }
-        });
+    const formState = {
+        job: '',
+        timing: '',
+        location: '',
+        name: '',
+        phone: '',
+        email: ''
+    };
 
-        stepIndicators.forEach((indicator, index) => {
-            if (index + 1 <= currentStep) {
-                indicator.classList.add('active');
-            } else {
-                indicator.classList.remove('active');
-            }
-        });
+    function renderOptions(fieldName) {
+        const target = document.querySelector(`[data-options-target="${fieldName}"]`);
+        if (!target) return;
 
-        // Show/hide buttons
-        if (currentStep === totalSteps) {
-            nextBtn.classList.add('hidden');
-            submitBtn.classList.remove('hidden');
+        if (target.tagName === 'SELECT') {
+            target.innerHTML = '<option value="">選択してください</option>' + 
+                formConfig[fieldName].map((label) => `<option value="${label}">${label}</option>`).join('');
         } else {
-            nextBtn.classList.remove('hidden');
-            submitBtn.classList.add('hidden');
+            target.innerHTML = formConfig[fieldName].map((label) => `
+                <label class="option-btn">
+                    <input type="radio" name="${fieldName}" value="${label}">
+                    <span>${label}</span>
+                </label>
+            `).join('');
         }
     }
 
-    // Next button click
-    nextBtn.addEventListener('click', function() {
-        if (currentStep < totalSteps) {
-            currentStep++;
-            updateStepDisplay();
-        }
-    });
+    function syncFormState() {
+        if (!form) return;
 
-    // Form submission
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-
-        // Basic validation for step 4
-        if (!data.name || !data.phone || !data.email) {
-            alert('すべての項目を入力してください。');
-            return;
-        }
-
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email)) {
-            alert('有効なメールアドレスを入力してください。');
-            return;
-        }
-
-        // Phone validation (Japanese phone number)
-        const phoneRegex = /^[\d-]{10,13}$/;
-        if (!phoneRegex.test(data.phone.replace(/[\s-]/g, ''))) {
-            alert('有効な電話番号を入力してください。');
-            return;
-        }
-
-        // Show success message
-        alert('お問い合わせありがとうございます。担当者より折り返しご連絡いたします。');
-
-        // Reset form
-        form.reset();
-        currentStep = 1;
-        updateStepDisplay();
-    });
-
-    // Option button selection
-    const optionBtns = document.querySelectorAll('.option-btn');
-    optionBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const input = this.querySelector('input[type="radio"]');
-            if (input) {
-                input.checked = true;
+        ['job', 'timing', 'location'].forEach((fieldName) => {
+            const input = form.querySelector(`[name="${fieldName}"]`);
+            if (input && input.tagName === 'SELECT') {
+                formState[fieldName] = input.value;
+            } else {
+                const checked = form.querySelector(`input[name="${fieldName}"]:checked`);
+                formState[fieldName] = checked ? checked.value : '';
             }
         });
-    });
+
+        formState.name = form.elements.name ? form.elements.name.value.trim() : '';
+        formState.phone = form.elements.phone ? form.elements.phone.value.trim() : '';
+        formState.email = form.elements.email ? form.elements.email.value.trim() : '';
+    }
+
+    function toggleFeedback(message) {
+        if (!formFeedback) return;
+        formFeedback.textContent = message || '';
+        formFeedback.classList.toggle('hidden', !message);
+    }
+
+    function setStageHeight() {
+        if (!stage) return;
+        const activeStep = steps.find((step) => Number(step.dataset.step) === currentStep);
+        if (!activeStep) return;
+        stage.style.height = `${activeStep.offsetHeight}px`;
+    }
+
+    function updateStepDisplay() {
+        steps.forEach((step, index) => {
+            step.classList.toggle('is-active', index + 1 === currentStep);
+        });
+
+        stepIndicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index + 1 <= currentStep);
+        });
+
+        if (backBtn) {
+            backBtn.classList.toggle('hidden', currentStep === 1);
+        }
+        if (nextBtn) {
+            nextBtn.classList.toggle('hidden', currentStep === totalSteps);
+        }
+        if (submitBtn) {
+            submitBtn.classList.toggle('hidden', currentStep !== totalSteps);
+        }
+
+        toggleFeedback('');
+        requestAnimationFrame(setStageHeight);
+    }
+
+    function validateStep(stepNumber) {
+        syncFormState();
+
+        if (stepNumber === 1 && !formState.job) {
+            return 'ご希望の職種を選択してください。';
+        }
+
+        if (stepNumber === 2) {
+            if (!formState.timing) {
+                return '転職時期を選択してください。';
+            }
+
+            if (!formState.location) {
+                return '希望勤務地を選択してください。';
+            }
+        }
+
+        if (stepNumber === 3 && !formState.name) {
+            return 'お名前を入力してください。';
+        }
+
+        if (stepNumber === 4) {
+            if (!formState.phone || !formState.email) {
+                return '電話番号とメールアドレスを入力してください。';
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formState.email)) {
+                return '有効なメールアドレスを入力してください。';
+            }
+
+            const phoneDigits = formState.phone.replace(/[^\d]/g, '');
+            if (phoneDigits.length < 10 || phoneDigits.length > 13) {
+                return '有効な電話番号を入力してください。';
+            }
+        }
+
+        return '';
+    }
+
+    if (form) {
+        renderOptions('job');
+        renderOptions('timing');
+        renderOptions('location');
+
+        form.addEventListener('change', syncFormState);
+        form.addEventListener('input', syncFormState);
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                const validationMessage = validateStep(currentStep);
+                if (validationMessage) {
+                    toggleFeedback(validationMessage);
+                    return;
+                }
+
+                if (currentStep < totalSteps) {
+                    currentStep += 1;
+                    updateStepDisplay();
+                }
+            });
+        }
+
+        if (backBtn) {
+            backBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep -= 1;
+                    updateStepDisplay();
+                }
+            });
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            for (let stepNumber = 1; stepNumber <= totalSteps; stepNumber += 1) {
+                const validationMessage = validateStep(stepNumber);
+                if (validationMessage) {
+                    currentStep = stepNumber;
+                    updateStepDisplay();
+                    toggleFeedback(validationMessage);
+                    return;
+                }
+            }
+
+            syncFormState();
+            form.classList.add('hidden');
+            if (stepBar) {
+                stepBar.classList.add('hidden');
+            }
+            if (thankYouMessage) {
+                thankYouMessage.classList.remove('hidden');
+            }
+            toggleFeedback('');
+        });
+
+        if (thankYouResetBtn) {
+            thankYouResetBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        updateStepDisplay();
+        window.addEventListener('resize', setStageHeight);
+    }
 
     // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');

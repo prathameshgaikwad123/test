@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-left">
             <img src="assets/images/logo01 1.png" alt="ミライ建設ナビ" class="header-logo">
+            <img src="assets/images/ロゴ 1.png" alt="ミライ建設ナビ" class="header-logo-mobile">
             <img src="assets/images/Group 166525.png" alt="月10名限定無料 キャリア相談簡単30秒" class="header-promo">
         </div>
+        <a href="#form" class="header-right-mobile">
+            <img src="assets/images/CTA.png" alt="無料キャリア相談" class="header-promo-mobile">
+        </a>
         <div class="header-right">
             <a href="#form" class="btn-web">WEBで相談してみる <span class="btn-circle-arrow">&#10095;</span></a>
             <div class="btn-line-wrap">
@@ -36,7 +40,7 @@
         </a>
     </div>
 
-    <!-- Hero Banner -->
+    <!-- Hero Banner (desktop only) -->
     <div class="hero-banner">
         <div class="hero-banner-inner">
             <img src="assets/images/ミライ建設ナビ様 (1)/Group 166526.png" alt="関西限定" class="kansai-badge">
@@ -45,96 +49,115 @@
                     <p class="hero-subtitle">施工管理の転職で</p>
                     <img src="assets/images/ミライ建設ナビ様 (1)/Group 166472.png" alt="鈴木花子" class="agent-badge">
                 </div>
-                <p class="hero-title-main">年収120万円アップ</p>
+                <p class="hero-title-main" style="padding-top: 10px;"><span class="nenshu-vertical"><span>年</span><span>収</span></span>120万円アップ</p>
             </div>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-left">
-            <img src="assets/images/Group 166581.png" alt="ミライ建設ナビ" class="hero-group-img">
+    <div class="hero-wrap">
+        <section class="hero">
+            <!-- Mobile-only: kansai badge + subtitle + title inside hero -->
+            <div class="hero-top-mob">
+                <div class="hero-header-row">
+                    <img src="assets/images/ミライ建設ナビ様 (1)/Group 166526.png" alt="関西限定" class="kansai-badge-mob">
+                    <p class="hero-subtitle-mob">施工管理の転職で</p>
+                </div>
+                <p class="hero-title-mob"><span class="nenshu-vertical"><span>年</span><span>収</span></span><span class="hero-title-number">120</span><span class="hero-title-sm">万円</span><span class="hero-title-up">アップ</span></p>
+            </div>
+            <div class="hero-left">
+                <img src="assets/images/Group 166581.png" alt="ミライ建設ナビ" class="hero-group-img">
+                <img src="assets/images/hero mobile.png" alt="ミライ建設ナビ" class="hero-group-img-mobile">
+            </div>
+        </section>
+
+        <!-- Mobile-only: agent badge -->
+        <div class="hero-agent-mob">
+            <div class="agent-mob-inner">
+                <div class="agent-mob-img-wrap">
+                    <img src="assets/images/ミライ建設ナビ様 (1)/Group 166472.png" alt="鈴木花子" class="agent-badge-mob-img">
+                </div>
+            </div>
         </div>
-        <div class="hero-form" id="form">
-            <div class="form-header-icon">
-                <img src="assets/images/Group 166524.svg" alt="search" class="search-icon">
+
+        <!-- Form column: desktop right column (absolutely positioned) + mobile below agent -->
+        <div class="hero-right">
+            <div class="hero-form" id="form">
+                <div class="form-header-icon">
+                    <img src="assets/images/Group 166524.svg" alt="search" class="search-icon">
+                </div>
+                <div class="form-header">
+                    <span style="z-index:3;">無料相談はこちらから</span>
+                </div>
+                <div class="form-steps">
+                    <span class="step active">STEP1</span>
+                    <span class="step-arrow">&#8594;</span>
+                    <span class="step">STEP2</span>
+                    <span class="step-arrow">&#8594;</span>
+                    <span class="step">STEP3</span>
+                    <span class="step-arrow">&#8594;</span>
+                    <span class="step">STEP4</span>
+                </div>
+                <form id="consultationForm" novalidate>
+                    <!-- Step 1 -->
+                    <div class="form-step-stage">
+                        <div class="form-step-content is-active" data-step="1">
+                            <p class="form-label">ご希望の職種を選択</p>
+                            <div class="form-options-grid" data-options-target="job"></div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="form-step-content" data-step="2">
+                            <div class="form-step-block">
+                                <p class="form-label">転職時期を選択</p>
+                                <select name="timing" data-options-target="timing"></select>
+                            </div>
+                            <div class="form-step-block">
+                                <p class="form-label">希望勤務地を選択</p>
+                                <select name="location" data-options-target="location"></select>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="form-step-content" data-step="3">
+                            <p class="form-label">お名前を入力</p>
+                            <div class="form-input-group">
+                                <input type="text" name="name" placeholder="お名前" autocomplete="name" required>
+                            </div>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="form-step-content" data-step="4">
+                            <p class="form-label">ご連絡先を入力</p>
+                            <div class="form-input-group">
+                                <input type="tel" name="phone" placeholder="電話番号" autocomplete="tel" required>
+                                <input type="email" name="email" placeholder="メールアドレス" autocomplete="email" required>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="form-feedback hidden" id="formFeedback"></p>
+                    <div class="form-nav">
+                        <button type="button" class="btn-back hidden" id="backBtn">戻る</button>
+                        <button type="button" class="btn-next" id="nextBtn">次へ進む <span class="arrow">&#10095;</span></button>
+                        <button type="submit" class="btn-submit hidden" id="submitBtn">送信する <span class="arrow">&#10095;</span></button>
+                    </div>
+                </form>
+                <div class="form-thank-you hidden" id="thankYouMessage">
+                    <p class="form-thank-you-status">送信完了</p>
+                    <p class="form-thank-you-copy">ご登録いただきありがとうございました。<br>担当からご連絡致します。今しばらくお待ちください。</p>
+                    <div class="form-thank-you-note">
+                        <p>2営業日以内に連絡がない場合は、メール不達の可能性がございます。</p>
+                        <p>お手数ですが、下記メールアドレスまでご連絡ください。</p>
+                        <span class="form-thank-you-email">shuto.hata@jin-jobchange.com</span>
+                    </div>
+                    <button type="button" class="btn-home" id="thankYouResetBtn">ホーム画面へ戻る</button>
+                </div>
             </div>
-            <div class="form-header">
-                <span>無料相談はこちらから</span>
-            </div>
-            <div class="form-steps">
-                <span class="step active">STEP1</span>
-                <span class="step-arrow">&#8594;</span>
-                <span class="step">STEP2</span>
-                <span class="step-arrow">&#8594;</span>
-                <span class="step">STEP3</span>
-                <span class="step-arrow">&#8594;</span>
-                <span class="step">STEP4</span>
-            </div>
-            <form id="consultationForm">
-                <!-- Step 1 -->
-                <div class="form-step-content" data-step="1">
-                    <p class="form-label">ご希望の職種を選択</p>
-                    <div class="form-options">
-                        <label class="option-btn"><input type="radio" name="experience" value="未経験"> 未経験</label>
-                        <label class="option-btn"><input type="radio" name="jobType1" value="土木施工管理"> 土木施工管理</label>
-                        <label class="option-btn"><input type="radio" name="jobType2" value="土木施工管理"> 土木施工管理</label>
-                    </div>
-                    <div class="form-options">
-                        <label class="option-btn"><input type="radio" name="experience2" value="未経験"> 未経験</label>
-                        <label class="option-btn"><input type="radio" name="jobType3" value="土木施工管理"> 土木施工管理</label>
-                        <label class="option-btn"><input type="radio" name="jobType4" value="土木施工管理"> 土木施工管理</label>
-                    </div>
-                    <div class="form-options">
-                        <label class="option-btn"><input type="radio" name="experience3" value="未経験"> 未経験</label>
-                        <label class="option-btn"><input type="radio" name="jobType5" value="土木施工管理"> 土木施工管理</label>
-                        <label class="option-btn"><input type="radio" name="jobType6" value="土木施工管理"> 土木施工管理</label>
-                    </div>
-                </div>
-                <!-- Step 2 -->
-                <div class="form-step-content hidden" data-step="2">
-                    <p class="form-label">現在のご状況を選択</p>
-                    <div class="form-options">
-                        <label class="option-btn"><input type="radio" name="status" value="在職中"> 在職中</label>
-                        <label class="option-btn"><input type="radio" name="status" value="離職中"> 離職中</label>
-                        <label class="option-btn"><input type="radio" name="status" value="その他"> その他</label>
-                    </div>
-                </div>
-                <!-- Step 3 -->
-                <div class="form-step-content hidden" data-step="3">
-                    <p class="form-label">希望エリアを選択</p>
-                    <div class="form-options">
-                        <label class="option-btn"><input type="radio" name="area" value="大阪"> 大阪</label>
-                        <label class="option-btn"><input type="radio" name="area" value="京都"> 京都</label>
-                        <label class="option-btn"><input type="radio" name="area" value="兵庫"> 兵庫</label>
-                    </div>
-                    <div class="form-options">
-                        <label class="option-btn"><input type="radio" name="area" value="奈良"> 奈良</label>
-                        <label class="option-btn"><input type="radio" name="area" value="滋賀"> 滋賀</label>
-                        <label class="option-btn"><input type="radio" name="area" value="和歌山"> 和歌山</label>
-                    </div>
-                </div>
-                <!-- Step 4 -->
-                <div class="form-step-content hidden" data-step="4">
-                    <p class="form-label">お客様情報を入力</p>
-                    <div class="form-input-group">
-                        <input type="text" name="name" placeholder="お名前" required>
-                        <input type="tel" name="phone" placeholder="電話番号" required>
-                        <input type="email" name="email" placeholder="メールアドレス" required>
-                    </div>
-                </div>
-                <button type="button" class="btn-next" id="nextBtn">次へ進む <span class="arrow">&#10095;</span></button>
-                <button type="submit" class="btn-submit hidden" id="submitBtn">送信する <span class="arrow">&#10095;</span></button>
-            </form>
         </div>
-        
-    </section>
+    </div>
 
     <!-- Pain Points Section -->
     <section class="pain-points">
         <div class="pain-top">
             <div class="container">
-                <h2 class="section-title-white">今の働き方に<br><span class="highlight-yellow">こんな悩み</span>ありませんか？</h2>
+                <h2 class="section-title-white">今の働き方に<br><span class="highlight-yellow">こんな <span class="highlight-word">悩み</span></span>ありませんか？</h2>
                 <div class="pain-list">
                     <div class="pain-item">「出張が多く、残業も多い」</div>
                     <div class="pain-item">「転勤が多く生活が安定しない」</div>
@@ -160,7 +183,7 @@
         </div>
         <div class="container">
             <div class="recommend-header">
-                <h2 class="section-title-white">こんな方に<br>おすすめです</h2>
+                <h2 class="section-title-white" style="color:#012682;">こんな方に<br>おすすめです</h2>
                 <img src="assets/images/4856598_m 1.png" alt="作業員" class="recommend-worker">
             </div>
             <div class="recommend-grid">
@@ -202,7 +225,8 @@
                 </div>
             </div>
             <div class="solution-banner">
-                <span>ミライ建設ナビが解決致します</span>
+                <img src="assets/images/ミライ建設ナビ様/4714145_m 1.png" alt="作業員" class="solution-banner-worker">
+                <span>ミライ建設ナビが<br class="solution-banner-break">解決致します</span>
             </div>
         </div>
     </section>
@@ -224,14 +248,14 @@
                         </div>
                     </div>
                     <div class="stat-item">
-                        <img src="assets/images/ミライ建設ナビ様/アワード-1.png" alt="Award" class="award-bg">
+                        <img src="assets/images/ミライ建設ナビ様/アワード-2.png" alt="Award" class="award-bg">
                         <div class="stat-content">
                             <!-- <span class="stat-number">+120</span><span class="stat-unit">万円</span> -->
                             <!-- <span class="stat-label">平均年収アップ</span> -->
                         </div>
                     </div>
                     <div class="stat-item">
-                        <img src="assets/images/ミライ建設ナビ様/アワード-2.png" alt="Award" class="award-bg">
+                        <img src="assets/images/ミライ建設ナビ様/アワード-1.png" alt="Award" class="award-bg">
                         <div class="stat-content">
                             <!-- <span class="stat-number">78</span><span class="stat-unit">%</span> -->
                             <!-- <span class="stat-label">年収アップ率</span> -->
@@ -260,35 +284,35 @@
             <div class="process-steps">
                 <div class="process-step">
                     <div class="step-icon">
-                        <img src="assets/images/ミライ建設ナビ様 (3)/Group.svg" alt="">
+                        <img src="assets/images/ミライ建設ナビ様 (3)/Group-4.svg" alt="">
                     </div>
                     <p>あなたの状況を<br>ヒアリング</p>
                 </div>
                 <span class="process-arrow">&#10095;</span>
                 <div class="process-step">
                     <div class="step-icon">
-                        <img src="assets/images/ミライ建設ナビ様 (3)/Group-1.svg" alt="">
+                        <img src="assets/images/ミライ建設ナビ様 (3)/Group-3.svg" alt="">
                     </div>
-                    <p>合う求人を<br>厳選して提案</p>
+                    <p style="color: black;">合う求人を<br>厳選して提案</p>
                 </div>
                 <span class="process-arrow">&#10095;</span>
                 <div class="process-step">
                     <div class="step-icon">
-                        <img src="assets/images/ミライ建設ナビ様 (3)/Group-2.svg" alt="">
+                        <img src="assets/images/ミライ建設ナビ様 (3)/Group-1.svg" alt="">
                     </div>
                     <p>面接準備を<br>一緒にやる</p>
                 </div>
                 <span class="process-arrow">&#10095;</span>
                 <div class="process-step">
                     <div class="step-icon">
-                        <img src="assets/images/ミライ建設ナビ様 (3)/Group-3.svg" alt="">
+                        <img src="assets/images/ミライ建設ナビ様 (3)/Group-2.svg" alt="">
                     </div>
-                    <p>内定後の<br>条件確認も同行</p>
+                    <p style="color: black;">内定後の<br>条件確認も同行</p>
                 </div>
                 <span class="process-arrow">&#10095;</span>
                 <div class="process-step">
                     <div class="step-icon">
-                        <img src="assets/images/ミライ建設ナビ様 (3)/Group-4.svg" alt="">
+                        <img src="assets/images/ミライ建設ナビ様 (3)/Group.svg" alt="">
                     </div>
                     <p>入社後も<br>相談OK</p>
                 </div>
@@ -301,8 +325,10 @@
         <div class="container">
             <h2 class="section-title-blue">代表メッセージ</h2>
             <div class="message-content">
-                <div class="message-image">
-                    <img src="assets/images/代表 1.png" alt="代表 秦 秀斗">
+                <div class="message-image-wrap">
+                    <div class="message-image">
+                        <img src="assets/images/代表 1.png" alt="代表 秦 秀斗">
+                    </div>
                     <p class="rep-title">未来建設ナビ 代表 秦 秀斗</p>
                 </div>
                 <div class="message-text">
@@ -331,7 +357,7 @@
                         <h3>解体工事施工管理のお仕事</h3>
                     </div>
                     <div class="job-card-body">
-                        <p class="salary">月収 <span>350,000</span> 円</p>
+                        <p class="salary">月収 <span style="color: #012682;">350,000</span> 円</p>
                         <div class="job-details">
                             <span class="job-tag">勤務地</span>
                             <img src="assets/images/ミライ建設ナビ様 (4)/Vector.svg" alt="" class="job-icon">
@@ -349,7 +375,7 @@
                         <h3>解体工事施工管理のお仕事</h3>
                     </div>
                     <div class="job-card-body">
-                        <p class="salary">月収 <span>350,000</span> 円</p>
+                        <p class="salary">月収 <span style="color: #012682;">350,000</span> 円</p>
                         <div class="job-details">
                             <span class="job-tag">勤務地</span>
                             <img src="assets/images/ミライ建設ナビ様 (4)/Vector.svg" alt="" class="job-icon">
@@ -367,7 +393,7 @@
                         <h3>解体工事施工管理のお仕事</h3>
                     </div>
                     <div class="job-card-body">
-                        <p class="salary">月収 <span>350,000</span> 円</p>
+                        <p class="salary">月収 <span style="color: #012682;">350,000</span> 円</p>
                         <div class="job-details">
                             <span class="job-tag">勤務地</span>
                             <img src="assets/images/ミライ建設ナビ様 (4)/Vector.svg" alt="" class="job-icon">
@@ -430,64 +456,83 @@
                 <p class="cta-text">カンタン30秒</p>
                 <p class="cta-highlight"><span class="yellow-text">月10名限定</span> キャリア相談</p>
                 <div class="cta-buttons">
-                    <a href="#form" class="btn-web-large">WEBで相談してみる <span class="arrow">&#10095;</span></a>
-                    <a href="#" class="btn-line-large">
-                        <span class="line-icon">LINE</span>
-                        まず、不安を話してみる <span class="arrow">&#10095;</span>
-                    </a>
+                    <div class="cta-web-group">
+                        <a href="#form" class="btn-web-large">WEBで相談してみる <span class="arrow">&#10095;</span></a>
+                        <p class="cta-note-spacer">&nbsp;</p>
+                    </div>
+                    <div class="cta-line-group">
+                        <a href="#" class="btn-line-large">
+                            <img src="assets/images/LINE_Brand_icon 1.svg" alt="LINE" class="line-svg">
+                            まず、不安を話してみる <span class="arrow">&#10095;</span>
+                        </a>
+                        <p class="cta-note">（LINE・無料）しつこい営業は一切しません</p>
+                    </div>
                 </div>
-                <p class="cta-note">（LINE・無料）しつこい営業は一切しません</p>
             </div>
         </div>
     </section>
 
     <!-- 5 Reasons Section -->
     <section class="reasons">
-        <div class="container">
+        <div class="reasons-intro">
             <h2 class="section-title-blue-border">ミライ建設ナビが選ばれる</h2>
             <p class="reasons-subtitle"><span class="big-5">5</span>つの理由</p>
+        </div>
+        <div class="reasons-grid-bg">
+        <div class="container">
             <div class="reasons-grid">
                 <div class="reason-card">
                     <div class="reason-image">
-                        <img src="assets/images/22264976_m 1.png" alt="チーム">
+                        <img src="assets/images/ミライ建設ナビ様 (5)/Mask group.png" alt="チーム">
+                        <span class="reason-number">1</span>
                     </div>
-                    <div class="reason-number">1</div>
-                    <h3>関西エリアの建設業に特化</h3>
-                    <p>ミライ建設ナビは関西エリアの建設業界に特化した人材紹介サービスです。大阪・京都・兵庫・奈良・滋賀・和歌山など、地元で働ける建設会社の求人を中心にご紹介。「関西で長く働きたい」「転勤のない職場で働きたい」そんな方に最適な求人をご案内します。</p>
+                    <div class="reason-body">
+                        <h3>関西エリアの建設業に特化</h3>
+                        <p>ミライ建設ナビは関西エリアの建設業界に特化した人材紹介サービスです。大阪・京都・兵庫・奈良・滋賀・和歌山など、地元で働ける建設会社の求人を中心にご紹介。「関西で長く働きたい」「転勤のない職場で働きたい」そんな方に最適な求人をご案内します。</p>
+                    </div>
                 </div>
                 <div class="reason-card">
                     <div class="reason-image">
-                        <img src="assets/images/4856598_m 1.png" alt="サポート">
+                        <img src="assets/images/ミライ建設ナビ様 (5)/33753395_s 1.png" alt="サポート">
+                        <span class="reason-number">2</span>
                     </div>
-                    <div class="reason-number">2</div>
-                    <h3>建設業界に詳しい転職サポート</h3>
-                    <p>建設業界に特化しているため業界の採用状況や仕事内容を理解した担当者がサポート。・施工管理・現場監督・職人・技術職など、建設業界ならではの転職事情を踏まえてあなたに合った企業をご紹介します。</p>
+                    <div class="reason-body">
+                        <h3>建設業界に詳しい転職サポート</h3>
+                        <p>建設業界に特化しているため業界の採用状況や仕事内容を理解した担当者がサポート。施工管理・現場監督・職人・技術職など、建設業界ならではの転職事情を踏まえてあなたに合った企業をご紹介します。</p>
+                    </div>
                 </div>
                 <div class="reason-card">
                     <div class="reason-image">
-                        <img src="assets/images/Group 166607.png" alt="非公開求人">
+                        <img src="assets/images/ミライ建設ナビ様 (5)/22806156_m 1.png" alt="非公開求人">
+                        <span class="reason-number">3</span>
                     </div>
-                    <div class="reason-number">3</div>
-                    <h3>建設業界に詳しい転職サポート</h3>
-                    <p>求人サイトには掲載されていない非公開求人も多数ご紹介可能。好条件の求人や人気企業の求人など、一般には公開されていない求人情報をご案内します。</p>
+                    <div class="reason-body">
+                        <h3>非公開求人も多数ご紹介</h3>
+                        <p>求人サイトには掲載されていない非公開求人も多数ご紹介可能。好条件の求人や人気企業の求人など、一般には公開されていない求人情報をご案内します。</p>
+                    </div>
                 </div>
                 <div class="reason-card">
                     <div class="reason-image">
-                        <img src="assets/images/Mask group.png" alt="トータルサポート">
+                        <img src="assets/images/ミライ建設ナビ様 (5)/28599776_m 1.png" alt="トータルサポート">
+                        <span class="reason-number">4</span>
                     </div>
-                    <div class="reason-number">4</div>
-                    <h3>転職活動をトータルサポート</h3>
-                    <p>求人紹介だけでなく転職活動を全面的にサポートします。・履歴書／職務経歴書のアドバイス・面接対策・条件交渉・入社までのフォロー転職が初めての方でも安心してご利用いただけます。</p>
+                    <div class="reason-body">
+                        <h3>転職活動をトータルサポート</h3>
+                        <p>求人紹介だけでなく転職活動を全面的にサポートします。・履歴書／職務経歴書のアドバイス・面接対策・条件交渉・入社までのフォロー転職が初めての方でも安心してご利用いただけます。</p>
+                    </div>
                 </div>
                 <div class="reason-card">
                     <div class="reason-image">
-                        <img src="assets/images/Group 166606.png" alt="無料">
+                        <img src="assets/images/ミライ建設ナビ様 (5)/30183444_m 1.png" alt="無料">
+                        <span class="reason-number">5</span>
                     </div>
-                    <div class="reason-number">5</div>
-                    <h3>完全無料で利用可能</h3>
-                    <p>ミライ建設ナビの転職サポートはすべて無料でご利用いただけます。転職活動の相談だけでも大歓迎です。お気軽にお問い合わせください。</p>
+                    <div class="reason-body">
+                        <h3>完全無料で利用可能</h3>
+                        <p>ミライ建設ナビの転職サポートはすべて無料でご利用いただけます。転職活動の相談だけでも大歓迎です。お気軽にお問い合わせください。</p>
+                    </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -497,7 +542,7 @@
             <p class="regional-text">ミライ建設ナビは<span class="yellow-highlight">関西の建設業界</span>に特化した<br>転職サポートを行っています。</p>
             <p class="regional-text">全国型エージェントでは実現しにくい<br><span class="yellow-highlight">地域密着</span>の求人紹介が可能です。</p>
             <div class="regional-image">
-                <img src="assets/images/Group 166610.png" alt="女性スタッフ">
+                <img src="assets/images/33753395_s 2.png" alt="女性スタッフ">
             </div>
         </div>
     </section>
@@ -508,6 +553,7 @@
             <div class="comparison-header">
                 <span>ミライ建設ナビと一般的な転職エージェントの比較</span>
             </div>
+            <div class="comparison-wrapper">
             <table class="comparison-table">
                 <thead>
                     <tr>
@@ -549,6 +595,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </section>
 
@@ -560,22 +607,33 @@
                 <p class="cta-text">カンタン30秒</p>
                 <p class="cta-highlight"><span class="yellow-text">月10名限定</span> キャリア相談</p>
                 <div class="cta-buttons">
-                    <a href="#form" class="btn-web-large">WEBで相談してみる <span class="arrow">&#10095;</span></a>
-                    <a href="#" class="btn-line-large">
-                        <span class="line-icon">LINE</span>
-                        まず、不安を話してみる <span class="arrow">&#10095;</span>
-                    </a>
+                    <div class="cta-web-group">
+                        <a href="#form" class="btn-web-large">WEBで相談してみる <span class="arrow">&#10095;</span></a>
+                        <p class="cta-note-spacer">&nbsp;</p>
+                    </div>
+                    <div class="cta-line-group">
+                        <a href="#" class="btn-line-large">
+                            <img src="assets/images/LINE_Brand_icon 1.svg" alt="LINE" class="line-svg">
+                            まず、不安を話してみる <span class="arrow">&#10095;</span>
+                        </a>
+                        <p class="cta-note">（LINE・無料）しつこい営業は一切しません</p>
+                    </div>
                 </div>
-                <p class="cta-note">（LINE・無料）しつこい営業は一切しません</p>
             </div>
+        </div>
+    </section>
+
+    <!-- FAQ Banner -->
+    <section class="faq-banner">
+        <div class="container">
+            <p class="faq-banner-sub">よくある「でも・・・」に、正直に答えます。</p>
+            <h2 class="faq-banner-title">施工管理って<span class="underline-yellow">ぶっちゃけどうなの？</span></h2>
         </div>
     </section>
 
     <!-- FAQ Section -->
     <section class="faq">
         <div class="container">
-            <h2 class="section-title-white">よくある「でも・・・」に、正直に答えます。</h2>
-            <p class="faq-subtitle"><span class="underline-yellow">施工管理ってぶっちゃけどうなの？</span></p>
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
@@ -682,6 +740,9 @@
 
     <!-- Final Message Section -->
     <section class="final-message">
+        <div class="final-image">
+            <img src="assets/images/28094701_m 2.png" alt="女性スタッフ">
+        </div>
         <div class="container">
             <div class="final-content">
                 <div class="final-text">
@@ -690,9 +751,6 @@
                     <p class="final-line highlight-bg">無理な転職は勧めません。</p>
                     <p class="final-line">合わなければ求人は紹介しません。</p>
                     <p class="final-line">あなたのペースで、一緒に考えます。</p>
-                </div>
-                <div class="final-image">
-                    <img src="assets/images/Group 166611.png" alt="女性スタッフ">
                 </div>
             </div>
             <div class="final-badges">
@@ -711,13 +769,18 @@
                 <p class="cta-text">カンタン30秒</p>
                 <p class="cta-highlight"><span class="yellow-text">月10名限定</span> キャリア相談</p>
                 <div class="cta-buttons">
-                    <a href="#form" class="btn-web-large">WEBで相談してみる <span class="arrow">&#10095;</span></a>
-                    <a href="#" class="btn-line-large">
-                        <span class="line-icon">LINE</span>
-                        まず、不安を話してみる <span class="arrow">&#10095;</span>
-                    </a>
+                    <div class="cta-web-group">
+                        <a href="#form" class="btn-web-large">WEBで相談してみる <span class="arrow">&#10095;</span></a>
+                        <p class="cta-note-spacer">&nbsp;</p>
+                    </div>
+                    <div class="cta-line-group">
+                        <a href="#" class="btn-line-large">
+                            <img src="assets/images/LINE_Brand_icon 1.svg" alt="LINE" class="line-svg">
+                            まず、不安を話してみる <span class="arrow">&#10095;</span>
+                        </a>
+                        <p class="cta-note">（LINE・無料）しつこい営業は一切しません</p>
+                    </div>
                 </div>
-                <p class="cta-note">（LINE・無料）しつこい営業は一切しません</p>
             </div>
         </div>
     </section>
@@ -726,7 +789,8 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-logo">
-                <img src="assets/images/logo01 1.png" alt="ミライ建設ナビ">
+                <img src="assets/images/logo01 1.png" alt="ミライ建設ナビ" class="footer-logo-desktop">
+                <img src="assets/images/ロゴ 1.png" alt="ミライ建設ナビ" class="footer-logo-mobile">
             </div>
             <p class="footer-link">会社概要</p>
             <p class="footer-copyright">&copy; 2026 ミライ建設ナビ All Rights Reserved.</p>
